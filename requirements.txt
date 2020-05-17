@@ -1,0 +1,7 @@
+Things you need for Django:
+
+1. Python 2.7.x or 3.4.x
+2. easy_install and Pip3. virtualenv
+4. Django
+5. Database (SQLite, MySQL, PostgreSQL, MongoDB, etc.)
+6. Text editor (Sublime, vscode)
