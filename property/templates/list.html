@@ -1,0 +1,32 @@
+{%  extends 'property/base.html' %}
+{% block body %}
+
+<br>
+<center><u><h1>Property List</h1></u></center><br>
+{% if property_list %}
+
+		
+		
+
+<div class="d-flex" style=" display: flex; flex-wrap: wrap; margin-top: 10px;">
+	{% for property in property_list %}
+	<div class="card" style="width: 18rem; margin-right: 10px;">
+		<img src="{{property.image.url}}" class="card-img-top" alt="...">
+		<div class="card-body">
+		    <h5 class="card-title">{{property}}</h5>
+		    <p class="card-text">{{property.description}}</p>
+		    <b>Price:</b> &nbsp; Rs. {{property.price}} per sqft. <br><br>
+		    <a href="{% url 'property:property_detail' property.id %}" class="btn btn-primary">View this property</a>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+	
+	{% else %}
+
+		<h3>Sorry We couldn't find it. Try searching something else. </h3>
+
+{% endif %}
+
+{% endblock %}

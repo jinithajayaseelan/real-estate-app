@@ -1,0 +1,22 @@
+{%  extends 'property/base.html' %}
+{% block body %}
+
+<center><u>
+<h1>Our Agents</h1>
+</u></center>
+{% for agent in agent_list %}
+
+
+<div class="card" style="width: 15rem;">
+  <img src="{{agent.image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+  	<b>{{agent.name}}</b>
+    <p class="card-text">{{agent.title}}</p>
+  </div>
+</div>
+
+
+{% endfor %}
+
+
+{% endblock %}

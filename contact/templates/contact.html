@@ -1,0 +1,35 @@
+{%  extends 'property/base.html' %}
+{% block body %}
+{% load bootstrap4 %}
+
+<br><hr>
+<div class="card text-white bg-info mb-3" style="width: 18rem; float: right;">
+  <h5 class="card-header">Please reach out to us</h5>
+  <div class="card-body" style="width: 18rem;">
+  	<i><p>198, West 21th Street, Suite <br> 721 New York, United States of America</p></i>
+    <p class="card-text">+91-{{contactdetails.phone_number}}<br></p>
+    <i><p class="card-text">{{contactdetails.email}}<br></p></i>
+  </div>
+</div>
+
+
+
+<div  style="display: flex; justify-content: center;max-width: 190vh;">
+<div class="card text-white bg-secondary mb-3" style="  ">
+  	<div class="card-header" style="text-align: center;"><h3>Please fill this form to recieve more updates</h3></div>
+	  	<div class="card-body">
+			<form method="POST">
+			    {% csrf_token %}
+			    {% bootstrap_form contact_form %}
+			    {% buttons %}
+			        <center><button type="submit" class="btn btn-success">Submit</button></center>
+			    {% endbuttons %}
+				
+			</form>
+	 	</div>
+  	</div>
+</div>
+</div>
+
+
+{% endblock %}

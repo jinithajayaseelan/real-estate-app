@@ -1,0 +1,94 @@
+{%  extends 'property/base.html' %}
+{% block body %}
+{% load bootstrap4 %}
+<br>
+<center>
+	<u>
+		<h1>Property Details</h1><br>
+	</u>
+</center>
+
+
+
+<h3>
+	{{property_detail.name}}<br>
+</h3>
+<img src="{{property_detail.image.url}}" style="max-width: 800px; border:1px solid black;"><br>
+
+<br><b><label>Description:</label> </b>
+	<p>{{property_detail.description}}</p><br>
+
+<b><label>Type:</label></b>
+ 	{{property_detail.property_type}}<br>
+
+<b><label>Area: </label></b>
+	{{property_detail.area}}<br>
+
+<b><label>Number of beds:</label></b>
+ 	{{property_detail.beds_number}}<br>
+
+<b><label>Number of bathrooms:</label></b>
+ 	{{property_detail.baths_number}}<br>
+
+<b><label>Number of garages:</label></b>
+ 	{{property_detail.garages_number}}<br>
+
+ <b><label>Price: </label></b>
+	{{property_detail.price}}/ sqft.<br>
+
+
+
+
+
+
+
+
+<br><hr><div  style="display: flex; justify-content: center;max-width: 190vh;">
+<div class="card text-white bg-secondary mb-3" style="  ">
+  	<div class="card-header" style="text-align: center;"><h3>Reserve this property yours by filling this form</h3></div>
+	  	<div class="card-body">
+			<form method="POST">
+			    {% csrf_token %}
+			    {% bootstrap_form reserve_form %}
+			    {% buttons %}
+			        <center><button type="submit" class="btn btn-success">Reserve</button></center>
+			    {% endbuttons %}
+				
+			</form>
+	 	</div>
+  	</div>
+</div>
+</div>
+<div class="container">
+
+<canvas id="myChart"></canvas>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script type="text/javascript">
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+	
+
+</script>
+{% endblock %}

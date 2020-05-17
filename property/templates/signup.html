@@ -1,0 +1,26 @@
+{%  extends 'property/base.html' %}
+{% block body %}
+
+
+<div class="container" >
+  <form method="POST" action="//" class="form-group">
+  {% csrf_token%}
+  <div class="card" style="width: 18rem; float: right; ">
+    <div class="card-body">
+      <label>Username</label>
+      <input type="text" name="username" class="form-control">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control">
+      <label>E-mail</label>
+      <input type="email" name="email" class="form-control"><br>
+      <button type="submit" class="btn btn-success">Enter</button><br>
+
+    Already have an account?<br>
+    <a href="/signin/">Click here </a>to Signin
+</div>
+</div>
+</form>
+</div>
+
+
+{% endblock %}

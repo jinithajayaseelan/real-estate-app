@@ -1,0 +1,129 @@
+{%  extends 'property/base.html' %}
+{% block body %}
+<br>
+
+<div class="container">
+<center>
+	<b>YOU HAVE A SURPRISE</b><br>
+
+	<button type="button" class="btn btn-warning" onclick="revealMessage()">Click me to reveal your surprise</button>
+	<div id="hiddenMessage" style="font-family: 'Pangolin', cursive; display: none;">
+		
+	
+	<p> You have unlocked 20% off on all your reservation
+	Apply this code in notes "YAY20"</p>
+
+	<!--<button id="countDownButton" onclick="countDown()">10</button> -->
+	</div>
+</center>
+
+
+	
+
+
+
+<!-- to display the search bar -->
+<div style=" background-color: blak; display: flex; justify-content: center; align-items: center; height: 80vh;">
+	<div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
+	  	<div class="card-header" style="text-align: center; color: black;"> <h3> Search</h3></div>
+	  	<div class="card-body">
+			<form class="form-inline" style="display: flex; justify-content: center;" action="{% url 'property:property_list' %}" method="GET">
+			{% csrf_token %}
+		   		<input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+
+				 	<select name="property_type" class="form-control">
+						<option value="rent">For rent</option>
+						<option value="sale">For Sale</option>
+					</select><br><br>
+
+		    	<button class="btn btn-success my-2 my-sm-0"  value="search" type="submit">Search</button><br><br>
+			</form>   
+	  	</div>
+	</div>
+</div>
+<hr>
+</div>
+
+
+
+
+<!-- to display the category of the places {{category_list.image.url}}-->
+<u><h3 style="text-align: center; display: inline-block;">Categories</h3></u>
+<div class="d-flex" style=" display: flex; flex-wrap: wrap; margin-top: 10px;">
+{% for category_list in category_list_home %}
+	<div class="d-flex" style=" margin-top: 10px;">
+		<div class="card" style="width: 18rem; margin-right: 10px;">
+		  	<img src="media/{{category_list.image}}" class="card-img-top" alt="...">
+			  <div class="card-body"><center>
+			    <h5 class="card-title">{{category_list.category_name}}</h5>
+			    <p class="card-text">{{category_list.property_count}} Properties</p>
+			    </center>
+			  </div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+
+
+
+
+
+
+<!-- to add the featuring list -->
+<hr>
+<u><h3 style="text-align: center;">Featured Ads</h3></u>
+<div class="d-flex" style=" display: flex; flex-wrap: wrap; margin-top: 10px;">
+
+{% for property in property_list_home %}
+<div class="card" style="width: 18rem;  margin-right: 10px">
+  <img src="media/{{property.image}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title" >{{property.name}}</h5>
+    <p class="card-text" style="">{{property.description}}</p>
+    <a href="{% url 'property:property_detail' property.id %}" class="btn btn-primary">Visit property</a>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+
+<!-- to add the agents list -->
+
+<hr><u><h3 style="text-align: center;">Our Agents</h3></u>
+<div class="d-flex" style=" display: flex; flex-wrap: wrap; margin-top: 10px;">
+
+{% for agent in agent_list_home %}
+
+
+<div class="card" style="width: 18rem;">
+  <img src="media/{{agent.image}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">{{agent.name}}</p>
+  </div>
+</div>
+</div>
+
+
+{% endfor %}
+</div>
+
+<script type="text/javascript">
+	function revealMessage() {
+		document.getElementById('hiddenMessage').style.display = 'block';
+	}
+	function countDown() {
+		var currentVal= document.getElementById('countDownButton').innerHTML;
+		var newVal= 0;
+		if (currentVal >0 ) {
+			newVal= currentVal -1;
+		}
+		document.getElementById('countDownButton').innerHTML= newVal;
+	}
+
+</script>
+<script type="text/javascript" src="C:\Users\Jayaseelan\Desktop\fsda\code\project\home\templates\particles.js"></script>
+<script type="text/javascript" src="C:\Users\Jayaseelan\Desktop\fsda\code\project\home\templates\particles.min.js"></script>
+<script type="text/javascript" src="C:\Users\Jayaseelan\Desktop\fsda\code\project\home\templates\app.js"></script>
+
+
+{% endblock %}
